@@ -36,6 +36,9 @@ Verify:
 calkit --version
 ```
 
+For alternate install directories, updates, uninstall notes, and checksum
+details, see [`INSTALL.md`](INSTALL.md).
+
 ## 2. Create A Calendar Repo
 
 Create a folder for your calendar data:
@@ -52,6 +55,12 @@ This creates:
 - `calendar.yaml` - calendar metadata
 - `scopes.yaml` - calendar tracks
 - `events/` - one YAML file per event
+
+Run a health check:
+
+```sh
+calkit doctor
+```
 
 ## 3. Add Events
 
@@ -73,7 +82,48 @@ View the next two weeks:
 calkit agenda --from today --to +2w
 ```
 
-## 4. Save History With Git
+Show the next upcoming occurrence:
+
+```sh
+calkit list --expand --from today --to +1w
+```
+
+Show one event after copying its id from `list` or `agenda`:
+
+```sh
+calkit show evt_12345678
+```
+
+Edit or remove an event:
+
+```sh
+calkit edit evt_12345678 --title "Updated title"
+calkit rm evt_12345678
+```
+
+## 4. Use Scopes
+
+Scopes are calendar tracks. The default repo starts with a `personal` scope.
+
+Create a work scope:
+
+```sh
+calkit scope add work --name "Work" --color "#2563eb"
+```
+
+Add an event to that scope:
+
+```sh
+calkit add --scope work --title "Planning" --start 2026-07-16T14:00:00 --end 2026-07-16T15:00:00
+```
+
+List only that scope:
+
+```sh
+calkit agenda --scope work --from today --to +2w
+```
+
+## 5. Save History With Git
 
 CalKit stores files locally. Use `snapshot` when you want CalKit to commit the
 current calendar state:
@@ -88,7 +138,7 @@ Inspect history:
 calkit history
 ```
 
-## 5. Preview The Calendar
+## 6. Preview The Calendar
 
 Build a static month view:
 
@@ -103,7 +153,40 @@ Or run the local interactive server:
 calkit serve
 ```
 
-## 6. Use JSON Output For Agents
+## 7. Import And Export
+
+Import an iCalendar file into a scope:
+
+```sh
+calkit import calendar.ics --scope personal
+```
+
+Export your calendar:
+
+```sh
+calkit export --format ics -o calendar.ics
+calkit export --format json -o calendar.json
+```
+
+Review exports before sharing them. They may contain private titles, notes,
+locations, URLs, and timing patterns.
+
+## 8. Optional: Reminders
+
+CalKit can run reminders through a per-calendar local job, but it does not do so
+until configured. Reminder delivery depends on the adapter you configure, such
+as TeleKit or a local command.
+
+Inspect reminder-related commands:
+
+```sh
+calkit reminders --help
+calkit reminder --help
+```
+
+Do not add notification tokens or credentials to calendar YAML files.
+
+## 9. Use JSON Output For Agents
 
 Every command supports `--json`, and `CALKIT_JSON=1` enables JSON output by
 default:
@@ -112,7 +195,7 @@ default:
 calkit agenda --from today --to +1w --json
 ```
 
-## 7. Optional: Install The Agent Skill
+## 10. Optional: Install The Agent Skill
 
 If you use an agent environment that reads local skills, install CalKit's skill
 into the current project:
@@ -126,9 +209,13 @@ This copies the public CalKit agent playbook into `.claude/skills/calkit/`.
 ## Common Issues
 
 - `calkit: command not found`: add `~/.local/bin` to your `PATH`.
+- `unsupported architecture`: the current public runtime is macOS `arm64`.
+- `checksum mismatch`: re-download the release files into the same folder.
 - `git` warnings: install git before using snapshot/history/branch commands.
 - `not in a calkit repo`: run commands from inside a folder initialized with
   `calkit init`.
+- `unknown scope`: create the scope with `calkit scope add` or use an existing
+  scope from `scopes.yaml`.
 - Timezone surprises: initialize with your IANA timezone, for example
   `America/Chicago`.
 

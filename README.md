@@ -7,7 +7,12 @@ code lives in the private `yevgetman/calkit` repo.
 
 Current version: **0.1.0** for macOS Apple Silicon (`arm64`).
 
-Start here: **[`GETTING_STARTED.md`](GETTING_STARTED.md)**.
+Start here:
+
+- **[`INSTALL.md`](INSTALL.md)** — installation, update, uninstall, and
+  verification.
+- **[`GETTING_STARTED.md`](GETTING_STARTED.md)** — first calendar repo and
+  core workflows.
 
 ## What You Get
 
@@ -30,7 +35,8 @@ This release installs a compiled `calkit` command. It does not include:
 
 ## Install
 
-From the [latest release](../../releases/latest), download these files into one folder:
+From the [latest release](../../releases/latest), download these files into one
+folder:
 
 - `install.sh`
 - `VERSION`
@@ -56,6 +62,9 @@ calkit --version
 Then follow **[`GETTING_STARTED.md`](GETTING_STARTED.md)** to initialize a
 calendar repo and run your first commands.
 
+For PATH setup, updates, manual verification, uninstall notes, and offline
+install details, see **[`INSTALL.md`](INSTALL.md)**.
+
 ## Sharing Calendars
 
 The runtime and calendar data are separate. Installing this runtime does not
@@ -74,3 +83,6 @@ the CalKit maintainers with:
 calkit --version
 calkit doctor
 ```
+
+Include your macOS version and whether your machine is Apple Silicon (`uname -m`
+prints `arm64`).

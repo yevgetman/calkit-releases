@@ -7,7 +7,7 @@ runtime without giving access to the private source code.
 
 Current release:
 
-- CalKit `0.1.0`
+- CalKit `0.1.1`
 - macOS Apple Silicon (`arm64`)
 
 Check your Mac:
@@ -28,7 +28,7 @@ into the same folder:
 - `install.sh`
 - `VERSION`
 - `SHA256SUMS`
-- `calkit-runtime-0.1.0-macos-arm64.tar.gz`
+- `calkit-runtime-0.1.1-macos-arm64.tar.gz`
 
 The installer expects the files to be side by side.
 
@@ -78,7 +78,7 @@ Make sure that directory is on your PATH.
 The installer verifies checksums automatically. To verify manually:
 
 ```sh
-shasum -a 256 calkit-runtime-0.1.0-macos-arm64.tar.gz
+shasum -a 256 calkit-runtime-0.1.1-macos-arm64.tar.gz
 cat SHA256SUMS
 ```
 

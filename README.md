@@ -5,7 +5,7 @@ Public binary release channel for **CalKit**.
 This repo ships compiled runtime artifacts and install metadata only. The source
 code lives in the private `yevgetman/calkit` repo.
 
-Current version: **0.1.0** for macOS Apple Silicon (`arm64`).
+Current version: **0.1.1** for macOS Apple Silicon (`arm64`).
 
 Start here:
 
@@ -41,7 +41,7 @@ folder:
 - `install.sh`
 - `VERSION`
 - `SHA256SUMS`
-- `calkit-runtime-0.1.0-macos-arm64.tar.gz`
+- `calkit-runtime-0.1.1-macos-arm64.tar.gz`
 
 Then run:
 

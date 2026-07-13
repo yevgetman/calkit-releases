@@ -16,7 +16,7 @@ into one folder:
 - `install.sh`
 - `VERSION`
 - `SHA256SUMS`
-- `calkit-runtime-0.1.0-macos-arm64.tar.gz`
+- `calkit-runtime-0.1.1-macos-arm64.tar.gz`
 
 Run:
 
@@ -56,6 +56,8 @@ This creates:
 - `scopes.yaml` - calendar tracks
 - `events/` - one YAML file per event
 
+Fresh repos start with three scope tracks: `personal`, `business`, and `birthdays`.
+
 Run a health check:
 
 ```sh
@@ -73,7 +75,7 @@ calkit add --title "Dentist" --start 2026-07-15T09:00:00 --end 2026-07-15T10:00:
 Add a recurring event:
 
 ```sh
-calkit add --title "Team standup" --start 2026-07-08T09:00:00 --end 2026-07-08T09:15:00 --repeat weekly --byday MO,WE
+calkit add --scope business --title "Team standup" --start 2026-07-08T09:00:00 --end 2026-07-08T09:15:00 --repeat weekly --byday MO,WE
 ```
 
 View the next two weeks:
@@ -103,24 +105,19 @@ calkit rm evt_12345678
 
 ## 4. Use Scopes
 
-Scopes are calendar tracks. The default repo starts with a `personal` scope.
-
-Create a work scope:
-
-```sh
-calkit scope add work --name "Work" --color "#2563eb"
-```
+Scopes are calendar tracks. The default repo starts with `personal`,
+`business`, and `birthdays`.
 
 Add an event to that scope:
 
 ```sh
-calkit add --scope work --title "Planning" --start 2026-07-16T14:00:00 --end 2026-07-16T15:00:00
+calkit add --scope business --title "Planning" --start 2026-07-16T14:00:00 --end 2026-07-16T15:00:00
 ```
 
 List only that scope:
 
 ```sh
-calkit agenda --scope work --from today --to +2w
+calkit agenda --scope business --from today --to +2w
 ```
 
 ## 5. Save History With Git
